@@ -83,8 +83,8 @@ export AWSUME_PROFILE=dev
 Related docs: https://github.com/trek10inc/awsume-console-plugin
 ```
 host> docker run --rm -it -v ~/.aws:/root/.aws/ gesellix/awsume # run the container's shell
-host> awsume <profile> -cl
-host> awsume <profile> -csl cfn # go directly to cloudformation
+awsume> awsume <profile> -cl
+awsume> awsume <profile> -csl cfn # go directly to cloudformation
 ```
 #### Tips for working with the awsume container:
 1. Attach a volume to the `/root` directory to persist your authentication between docker runs:
