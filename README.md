@@ -83,10 +83,25 @@ export AWSUME_PROFILE=dev
 Related docs: https://github.com/trek10inc/awsume-console-plugin
 ```
 host> docker run --rm -it -v ~/.aws:/root/.aws/ gesellix/awsume # run the container's shell
-
-> awsume dev -cl
-> awsume dev -csl cfn # go directly to cloudformation
+host> awsume dev -cl
+host> awsume dev -csl cfn # go directly to cloudformation
 ```
+#### Tips for working with the awsume container:
+1. Attach a volume to the `/root` directory to persist your authentication between docker runs:
+
+	`docker run --rm -v ~/.aws/:/root/.aws/ -v awsume_data:/root gesellix/awsume awsume <profile>`
+2. If you add this to your `~/.bashrc` or `~/.zshrc` file and use macOs...
+	```
+    awsc () {
+      URL=$( { docker run --rm -v ~/.aws/:/root/.aws/ -v awsume_data:/root gesellix/awsume awsume "$1" -csl "$2"; } 2>&1 )
+      /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome $(echo "$URL" | grep "http")
+   }
+	```
+	...then you can open a URL that goes to a specific service (ex: IAM) with Google Chrome by just running this:
+	```
+	awsc <profile> iam
+	```
+	Note: This will only work if you are in an authenticated session.
 
 
 ## Build the Docker image
