@@ -91,16 +91,16 @@ awsume> awsume <profile> -csl cfn # go directly to cloudformation
 
 	`docker run --rm -v ~/.aws/:/root/.aws/ -v awsume_data:/root gesellix/awsume awsume <profile>`
 2. If you add this to your `~/.bashrc` or `~/.zshrc` file and use macOs...
-	```
-    awsc () {
-      URL=$( { docker run --rm -v ~/.aws/:/root/.aws/ -v awsume_data:/root gesellix/awsume awsume "$1" -csl "$2"; } 2>&1 )
-      /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome $(echo "$URL" | grep "http")
+   ```
+   awsc () {
+     URL=$( { docker run --rm -v ~/.aws/:/root/.aws/ -v awsume_data:/root gesellix/awsume awsume "$1" -csl "$2"; } 2>&1 )
+     /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome $(echo "$URL" | grep "http")
    }
-	```
+   ```
 	...then you can open a URL that goes to a specific service (ex: IAM) with Google Chrome by just running this:
-	```
-	awsc <profile> iam
-	```
+   ```
+   awsc <profile> iam
+   ```
 	Note: This will only work if you are in an authenticated session.
 
 
